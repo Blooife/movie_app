@@ -177,7 +177,7 @@ class _UserScreenState extends State<UserScreen> {
                                 'Male',
                                 style: TextStyle(fontSize: 18),
                               ),
-                              const SizedBox(width: 50), // Пространство между "Male" и "Female"
+                              const SizedBox(width: 50),
                               Radio<String>(
                                 value: 'Female',
                                 groupValue: value,
@@ -266,7 +266,7 @@ class _UserScreenState extends State<UserScreen> {
                       children: [
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0), // Увеличиваем размер кнопки
+                          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0), 
                         ),
                       onPressed: () {
                         MyUser myUser = MyUser.empty;
@@ -280,7 +280,7 @@ class _UserScreenState extends State<UserScreen> {
                         myUser.country = countryController.text;
                         myUser.city = cityController.text;
                         myUser.about = aboutController.text;
-                        myUser.gender = genderController.value == 'Male'; // Преобразуйте выбранный пол в булево значение
+                        myUser.gender = genderController.value == 'Male'; 
                         myUser.favorites = user.favorites;
                         myUser.favCountry = favCountryController.value;
                         context.read<UpdateUserBloc>().add(
@@ -289,13 +289,13 @@ class _UserScreenState extends State<UserScreen> {
                       },
                       child: const Text(
                         'Save',
-                        style: TextStyle(fontSize: 16.0), // Увеличиваем размер шрифта
+                        style: TextStyle(fontSize: 16.0), 
                       ),
                     ),
                     const SizedBox(width: 16.0),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0), // Увеличиваем размер кнопки
+                          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0), 
                         ),
                       onPressed: () {
                         context.read<UpdateUserBloc>().add(

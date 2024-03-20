@@ -12,17 +12,17 @@ class ReviewsScreen extends StatefulWidget {
 }
 
 class _ReviewsScreenState extends State<ReviewsScreen> {
-  List<Review> reviews = []; // List to store fetched reviews
-  bool isLoading = true; // Flag to track loading state
-  TextEditingController reviewController = TextEditingController(); // Controller for review text field
+  List<Review> reviews = []; 
+  bool isLoading = true; 
+  TextEditingController reviewController = TextEditingController(); 
 
   @override
   void initState() {
     super.initState();
-    fetchReviews(); // Fetch reviews when the screen initializes
+    fetchReviews(); 
   }
 
-  // Method to fetch reviews from FirebaseReviewRepo
+
   void fetchReviews() async {
     try {
       List<Review> fetchedReviews =
@@ -30,19 +30,18 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
       fetchedReviews.sort((a, b) => b.time.compareTo(a.time));
       setState(() {
         reviews = fetchedReviews;
-        isLoading = false; // Set loading flag to false after fetching
+        isLoading = false; 
       });
     } catch (e) {
-      // Handle error
       print('Error fetching reviews: $e');
     }
   }
 
-  // Method to submit a review
+
   void submitReview() async {
     final user = context.read<AuthenticationBloc>().state.user!;
-    String userId = user.userId; // Replace with actual user ID
-    String userName = user.name; // Replace with actual user name
+    String userId = user.userId; 
+    String userName = user.name; 
     String text = reviewController.text.trim();
 
     if (text.isNotEmpty) {
@@ -54,7 +53,6 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
           text,
           DateTime.now(),
         );
-        // Clear the text field and fetch reviews again
         reviewController.clear();
         fetchReviews();
       } catch (e) {
@@ -65,17 +63,15 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
   }
 
   String _formatDate(DateTime dateTime) {
-  // Добавляем ведущие нули перед днем и месяцем
   String day = dateTime.day.toString().padLeft(2, '0');
   String month = dateTime.month.toString().padLeft(2, '0');
-  return '$day.$month.${dateTime.year}'; // Формат даты: dd.MM.yyyy
+  return '$day.$month.${dateTime.year}'; 
 }
 
 String _formatTime(DateTime dateTime) {
-  // Добавляем ведущие нули перед часом и минутой
   String hour = dateTime.hour.toString().padLeft(2, '0');
   String minute = dateTime.minute.toString().padLeft(2, '0');
-  return '$hour:$minute'; // Формат времени: HH:mm
+  return '$hour:$minute'; 
 }
 
 
@@ -153,9 +149,9 @@ String _formatTime(DateTime dateTime) {
           ),
           Expanded(
             child: isLoading
-                ? const Center(child: CircularProgressIndicator()) // Show loading indicator while fetching
+                ? const Center(child: CircularProgressIndicator()) 
                 : reviews.isEmpty
-                    ? const Center(child: Text('No reviews available')) // Show message if no reviews
+                    ? const Center(child: Text('No reviews available')) 
                     : ListView.builder(
                         itemCount: reviews.length,
                         itemBuilder: (context, index) {

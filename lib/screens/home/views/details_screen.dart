@@ -21,7 +21,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
   void initState() {
     super.initState();
     _pageController.addListener(_pageListener);
-    //updateMovie();
+    
   }
 
   @override
@@ -61,16 +61,16 @@ class _DetailsScreenState extends State<DetailsScreen> {
   String getRatingForCurrentUser(List<Map<String, dynamic>>? ratings) {
     final userId = context.read<AuthenticationBloc>().state.user!.userId;    
     if (ratings == null || ratings.isEmpty) {
-      return ''; // Return 0 if no ratings or empty list
+      return ''; 
     }
 
     for (var rating in ratings) {
       if (rating['userId'] == userId) {
-        return rating['rate'].toString(); // Return the user's rating if found
+        return rating['rate'].toString(); 
       }
     }
 
-    return ''; // Return 0 if the user's rating is not found
+    return ''; 
 }
 
   void _showRateModal(BuildContext context, String userId) async {
@@ -81,7 +81,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
           insetPadding: EdgeInsets.zero,
           child: Container(
             padding: const EdgeInsets.all(16),
-            height: 150, // Высота полосы с оценками
+            height: 150, 
             child: Column(
               children: [
                 Expanded(
@@ -94,7 +94,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           onTap: () async {                    
                             await movieRepo.addRate(widget.movie.movieId, userId, rating);                            
                             Navigator.pop(context); 
-                            updateMovie(); // Ожидаем обновления данных и только потом обновляем UI
+                            updateMovie(); 
                           },
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -113,18 +113,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 8), // Расстояние между рядами оценок
+                const SizedBox(height: 8), 
                 Expanded(
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: List.generate(5, (index) {
-                        int rating = index + 6; // Начинаем со 6, чтобы продолжить оценки с 6 до 10
+                        int rating = index + 6; 
                         return InkWell(
                           onTap: () async {    
                             await movieRepo.addRate(widget.movie.movieId, userId, rating);
                             Navigator.pop(context); 
-                            updateMovie(); // Ожидаем обновления данных и только потом обновляем UI
+                            updateMovie(); 
                           },
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

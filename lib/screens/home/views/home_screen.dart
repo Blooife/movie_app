@@ -22,8 +22,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String selectedCountry = 'None'; // Initial selected country
-  String selectedGenre = 'None'; // Initial selected genre
+  String selectedCountry = 'None'; 
+  String selectedGenre = 'None'; 
   String? selectedYearDirection;
 
   void refreshData() {    
@@ -139,7 +139,7 @@ void _showFilterBottomSheet(BuildContext context) {
                         selectedYearDirection = null;
                         selectedCountry = 'None';
                         selectedGenre = 'None';
-                        Navigator.pop(context); // Close the bottom sheet
+                        Navigator.pop(context); 
                         applyFilters();
                       },
                       child: const Text('Cancel'),
@@ -253,7 +253,7 @@ void applyFilters() {
           ),
           IconButton(
             onPressed: () {
-              _showFilterBottomSheet(context); // Call your bottom sheet function here
+              _showFilterBottomSheet(context); 
             },
             icon: const Icon(Icons.filter_list),
           ),

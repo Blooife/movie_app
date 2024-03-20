@@ -76,7 +76,7 @@ class _MoviesGridState extends State<MoviesGrid> {
           ),
           onChanged: _search,
         ) : null,
-        leading: IconButton( // Здесь изменяем на leading
+        leading: IconButton( 
           icon: const Icon(Icons.search),
           onPressed: () {
             setState(() {
@@ -123,9 +123,7 @@ class _MoviesGridState extends State<MoviesGrid> {
                         ),
                       ).then((data){
                         if (data != null && data is List<Movie>) {
-                          // Теперь data можно использовать как List<Movie>
                           List<Movie> movies = data;
-                          // Продолжайте работу с movies
                           onGoBack(movies);
                       }
                     },);},
@@ -138,13 +136,13 @@ class _MoviesGridState extends State<MoviesGrid> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                height: 220, // Задаем желаемую высоту
-                                width: double.infinity, // Ширина равна ширине родительского виджета
+                                height: 220, 
+                                width: double.infinity, 
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(16),
                                   child: Image.network(
                                     filteredMovies[i].picture[0],
-                                    fit: BoxFit.cover, // Задаем, чтобы изображение занимало всю область контейнера
+                                    fit: BoxFit.cover, 
                                   ),
                                 ),
                               ),
