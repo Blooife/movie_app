@@ -104,6 +104,7 @@ class _UserScreenState extends State<UserScreen> {
               genderController.value = user.gender ? 'Male' : 'Female';
               favCountryController.value = user.favCountry;
               favGenreController.value = user.favGenre;
+              
 
               return SingleChildScrollView(
                 child: Column(
@@ -283,6 +284,7 @@ class _UserScreenState extends State<UserScreen> {
                         myUser.gender = genderController.value == 'Male'; 
                         myUser.favorites = user.favorites;
                         myUser.favCountry = favCountryController.value;
+                        myUser.favGenre = favGenreController.value;
                         context.read<UpdateUserBloc>().add(
                           UpdateUser(myUser),
                         );
